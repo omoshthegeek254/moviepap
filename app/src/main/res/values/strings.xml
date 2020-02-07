@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Moviepap</string>
+    <string name="your_preferred_genres">Your Preferred Genres</string>
+    <string name="welcome_to_moviepap">Welcome to Moviepap</string>
+</resources>
