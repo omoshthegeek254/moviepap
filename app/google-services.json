@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "559076449267",
+    "firebase_url": "https://moviepap101.firebaseio.com",
+    "project_id": "moviepap101",
+    "storage_bucket": "moviepap101.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559076449267:android:3b1160b488d6fb94225086",
+        "android_client_info": {
+          "package_name": "com.example.movie101"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559076449267-ols197r8vusp5joa91s7jp846bluhina.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.movie101",
+            "certificate_hash": "1fb797dfd6c4fce06f98c59496843893979ba6cc"
+          }
+        },
+        {
+          "client_id": "559076449267-71qode1tpncaf73d4e9cclv6pnjvnb8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAExAazzzMTMZIt6KoCKk4hnyYr1NdLDqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559076449267-71qode1tpncaf73d4e9cclv6pnjvnb8v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
