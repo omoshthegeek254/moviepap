@@ -82,14 +82,6 @@ public class MoviesActivity extends AppCompatActivity {
         });
     }
 
-//    public void getCurrentPopularMovies(List<Result> movies) {
-//        recyclerView = findViewById(R.id.popularRecyclerView);
-//        adapter = new PopularMoviesAdapter(this,movies);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(adapter);
-//    }
-
 
 
 }

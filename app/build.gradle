@@ -35,8 +35,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    //firebase
-    implementation 'com.firebaseui:firebase-ui-database:3.3.1'
+
+//    //firebase
+//
+//    implementation 'com.firebaseui:firebase-ui-database:3.3.1'
+//    implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
     //    retrofit dependancies
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
@@ -45,11 +48,12 @@ dependencies {
 //picaso 1
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-    //parcelar
-    implementation 'org.parceler:parceler-api:1.1.12'
-    annotationProcessor 'org.parceler:parceler:1.1.12'
+//    //parcelar
+//    implementation 'org.parceler:parceler-api:1.1.12'
+//    annotationProcessor 'org.parceler:parceler:1.1.12'
 
 //butterknife
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
 }
