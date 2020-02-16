@@ -54,7 +54,7 @@
         android:autofillHints=""
         android:background="#8303A9F4"
         android:ems="10"
-        android:hint="Enter Username /Email"
+        android:hint="Enter Email"
         android:inputType="textPassword"
         android:textColor="@color/yellowtheme"
         app:layout_constraintEnd_toEndOf="parent"

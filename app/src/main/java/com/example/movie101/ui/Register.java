@@ -39,6 +39,11 @@ public class Register extends AppCompatActivity {
         progressBarReg =findViewById(R.id.progressBarReg);
         fbAuth = FirebaseAuth.getInstance();
 
+        if(fbAuth.getCurrentUser() !=null){
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finish();
+        }
+
 
         //set click listner on the register button
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
@@ -76,17 +81,17 @@ public class Register extends AppCompatActivity {
                     mConfirmPassword.setError("PassWor Field id Required");
                     return;
                 }
-                if(TextUtils.equals(email,emailCon) ){
-                    mEmail.setError("Emails Don't match ,Try Again");
-                    mConfirmEmail.setError("Emails Don't match ,Try Again");
-                    return;
-                }
+//                if(TextUtils.equals(email,emailCon) ){
+//                    mEmail.setError("Emails Don't match ,Try Again");
+//                    mConfirmEmail.setError("Emails Don't match ,Try Again");
+//                    return;
+//                }
 
-                if(TextUtils.equals(passWord,passWordCon) ){
-                    mConfirmPassword.setError("Passwords Don't match ,Try Again");
-                    mPassword.setError("PassWords Don't match ,Try Again");
-                    return;
-                }
+//                if(TextUtils.equals(passWord,passWordCon) ){
+//                    mConfirmPassword.setError("Passwords Don't match ,Try Again");
+//                    mPassword.setError("PassWords Don't match ,Try Again");
+//                    return;
+//                }
 
                 //setting progressbar visibility
                 progressBarReg.setVisibility(View.VISIBLE);
@@ -97,7 +102,7 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Register.this,"User Created Successfully",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent((getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent((getApplicationContext()),MainActivity.class));
                         }else {
                             Toast.makeText(Register.this,"Error !!!"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                         }
