@@ -116,4 +116,8 @@ public class Register extends AppCompatActivity {
 
 
     }
+
+    public void regLogin(View view) {
+        startActivity(new Intent(getApplicationContext(),Login.class));
+    }
 }

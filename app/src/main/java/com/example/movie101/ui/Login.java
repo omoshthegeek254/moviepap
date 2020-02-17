@@ -33,6 +33,17 @@ public class Login extends AppCompatActivity {
         mPassword= findViewById(R.id.mPassword);
         mLoginBtn =findViewById(R.id.mLoginBtn);
         progressBarLogin=findViewById(R.id.progressBarLogin);
+        fbAuth =FirebaseAuth.getInstance();
+
+//        if(fbAuth.getCurrentUser() !=null){
+//            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+//            finish();
+//        }else {
+//            Toast.makeText(Login.this,"Kindly login First",Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(getApplicationContext(),Login.class));
+//
+//
+//        }
 
 
         //login logic
@@ -55,18 +66,25 @@ public class Login extends AppCompatActivity {
 
                 //authenticate user
 
-                fbAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                Task<AuthResult> login_successful = fbAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                     if (task.isSuccessful()){
-                         Toast.makeText(Login.this,"Login Successful",Toast.LENGTH_SHORT).show();
-                         startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
-                     }
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                        } else {
+                            Toast.makeText(Login.this, "Error !!!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }
+
         });
 
+    }
+    public void regUser(View view){
+        startActivity(new Intent(getApplicationContext(),Register.class));
     }
 }
