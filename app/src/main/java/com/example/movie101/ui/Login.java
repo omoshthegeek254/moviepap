@@ -3,6 +3,8 @@ package com.example.movie101.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,10 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.movie101.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +28,7 @@ public class Login extends AppCompatActivity {
     Button mLoginBtn;
     ProgressBar progressBarLogin;
     FirebaseAuth fbAuth;
+    TextView forgotPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,17 +40,51 @@ public class Login extends AppCompatActivity {
         mLoginBtn =findViewById(R.id.mLoginBtn);
         progressBarLogin=findViewById(R.id.progressBarLogin);
         fbAuth =FirebaseAuth.getInstance();
+        forgotPass =findViewById(R.id.forgotPass);
 
-//        if(fbAuth.getCurrentUser() !=null){
-//            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-//            finish();
-//        }else {
-//            Toast.makeText(Login.this,"Kindly login First",Toast.LENGTH_SHORT).show();
-//            startActivity(new Intent(getApplicationContext(),Login.class));
-//
-//
-//        }
+//reset password
+ forgotPass.setOnClickListener(new View.OnClickListener() {
+     @Override
+     public void onClick(View v) {
+         EditText resetMail = new EditText(Login.this);
+         AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(Login.this);
+         passwordResetDialog.setMessage("Enter your Email below to receive password reset");
+         passwordResetDialog.setView(resetMail);
 
+         //handling dialogue buttons
+         passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+             @Override
+             public void onClick(DialogInterface dialog, int which) {
+                 //extract email and reset email
+                 String mail = resetMail.getText().toString();
+                 fbAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                     @Override
+                     public void onSuccess(Void aVoid) {
+                         Toast.makeText(Login.this,"Reset link sent to mail",Toast.LENGTH_SHORT).show();
+
+                     }
+                 }).addOnFailureListener(new OnFailureListener() {
+                     @Override
+                     public void onFailure(@NonNull Exception e) {
+                         Toast.makeText(Login.this,"Error !!!Reset link Not sent "+e.getMessage(),Toast.LENGTH_SHORT).show();
+                     }
+                 });
+
+             }
+         });
+
+         passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+             @Override
+             public void onClick(DialogInterface dialog, int which) {
+                 //Close dialog
+             }
+         });
+
+         passwordResetDialog.create().show();
+
+
+     }
+ });
 
         //login logic
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +121,13 @@ public class Login extends AppCompatActivity {
                 });
             }
 
-        });
+        }
+
+
+
+
+
+        );
 
     }
     public void regUser(View view){

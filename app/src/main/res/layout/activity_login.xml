@@ -7,6 +7,19 @@
     android:background="@drawable/bg1"
     tools:context=".ui.Login">
 
+    <TextView
+        android:id="@+id/forgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="Forgot Password?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.882"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mUserName"
+        app:layout_constraintVertical_bias="0.496" />
+
     <EditText
         android:id="@+id/mPassword"
         android:layout_width="wrap_content"
@@ -102,7 +115,7 @@
         app:layout_constraintHorizontal_bias="0.161"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/mUserName"
-        app:layout_constraintVertical_bias="0.413" />
+        app:layout_constraintVertical_bias="0.496" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
