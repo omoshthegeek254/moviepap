@@ -35,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void logout(View view) {
 
-//        loging out the user
-        fbAuth.getInstance().signOut();
-
-startActivity(new Intent(getApplicationContext(), Login.class));
-        finish();
+////        loging out the user
+//        fbAuth.getInstance().signOut();
+//
+//startActivity(new Intent(getApplicationContext(), Login.class));
+//        finish();
     }
 
-//    public void createProfile(View view){
-//        startActivity(new Intent(getApplicationContext(),));
-//    }
+    public void makeProf(View view){
+        startActivity(new Intent(getApplicationContext(),CreateProfile.class));
+    }
 }

@@ -17,12 +17,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
     EditText mUserName,mEmail,mConfirmEmail,mPassword,mConfirmPassword;
     Button  mRegisterBtn;
     ProgressBar progressBarReg;
     FirebaseAuth fbAuth;
+    FirebaseDatabase fbDb= FirebaseDatabase.getInstance();
+
+    DatabaseReference fbDbRef = fbDb.getReference("users") ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +38,9 @@ public class Register extends AppCompatActivity {
         //seting link  for th xml resource file
         mUserName = findViewById(R.id.mUserName);
         mEmail= findViewById(R.id.mEmail);
-        mConfirmEmail=findViewById(R.id.mConfirmEmail);
+//        mConfirmEmail=findViewById(R.id.mConfirmEmail);
         mPassword=findViewById(R.id.mPassword);
-        mConfirmPassword= findViewById(R.id.mConfirmPassword);
+//        mConfirmPassword= findViewById(R.id.mConfirmPassword);
         mRegisterBtn =findViewById(R.id.mRegisterBtn);
         progressBarReg =findViewById(R.id.progressBarReg);
         fbAuth = FirebaseAuth.getInstance();
@@ -51,9 +57,9 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 String username = mUserName.getText().toString().trim();
                 String email = mEmail.getText().toString().trim();
-                String emailCon =mConfirmEmail.getText().toString().trim();
+//                String emailCon =mConfirmEmail.getText().toString().trim();
                 String passWord = mPassword.getText().toString().trim();
-                String passWordCon = mConfirmPassword.getText().toString().trim();
+//                String passWordCon = mConfirmPassword.getText().toString().trim();
 
                 //validating user inputs
 
@@ -67,20 +73,20 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
-                if(TextUtils.isEmpty(emailCon) ){
-                    mUserName.setError("Email Confirmation Field id Required");
-                    return;
-                }
+//                if(TextUtils.isEmpty(emailCon) ){
+//                    mUserName.setError("Email Confirmation Field id Required");
+//                    return;
+//                }
 
                 if(TextUtils.isEmpty(passWord )){
                     mPassword.setError("Password Field id Required");
                     return;
                 }
 
-                if(TextUtils.isEmpty(passWordCon) ){
-                    mConfirmPassword.setError("PassWor Field id Required");
-                    return;
-                }
+//                if(TextUtils.isEmpty(passWordCon) ){
+//                    mConfirmPassword.setError("PassWor Field id Required");
+//                    return;
+//                }
 //                if(TextUtils.equals(email,emailCon) ){
 //                    mEmail.setError("Emails Don't match ,Try Again");
 //                    mConfirmEmail.setError("Emails Don't match ,Try Again");
@@ -102,6 +108,14 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Register.this,"User Created Successfully",Toast.LENGTH_SHORT).show();
+                            //add data to db
+                            fbDbRef.setValue("hellow there");
+
+
+
+
+
+
                             startActivity(new Intent((getApplicationContext()),MainActivity.class));
                         }else {
                             Toast.makeText(Register.this,"Error !!!"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
