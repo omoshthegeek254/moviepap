@@ -1,6 +1,7 @@
 package com.example.movie101.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,10 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movie101.R;
 import com.example.movie101.models.Result;
+import com.example.movie101.ui.MovieDisplay;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -42,6 +45,19 @@ public class adapter2 extends RecyclerView.Adapter<adapter2.MoviesViewHolder>  {
     @Override
     public void onBindViewHolder(adapter2.MoviesViewHolder holder, int position) {
         holder.bindMovie(mMovies.get(position));
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent =new Intent(mContext, MovieDisplay.class);
+                intent.putExtra("title",mMovies.get(position).getOriginalTitle());
+                intent.putExtra("category",mMovies.get(position).getOriginalLanguage());
+                intent.putExtra("description",mMovies.get(position).getOverview());
+                intent.putExtra("posterPath",mMovies.get(position).getPosterPath());
+                mContext.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -52,6 +68,7 @@ public class adapter2 extends RecyclerView.Adapter<adapter2.MoviesViewHolder>  {
     public class MoviesViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.movie_poster) ImageView mMovieImageView;
         @BindView(R.id.movie_title) TextView mTitleTextView;
+        @BindView(R.id.cardViewId) CardView mCardView;
 //        @BindView(R.id.movieSummaryTextView) TextView mOverviewTextView;
 //        @BindView(R.id.ratingTextView) TextView mRatingTextView;
 
