@@ -48,6 +48,7 @@ public class adapter2 extends RecyclerView.Adapter<adapter2.MoviesViewHolder>  {
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                v.animate().alpha(0.2f).xBy(-100).yBy(100);
 
                 Intent intent =new Intent(mContext, MovieDisplay.class);
                 intent.putExtra("title",mMovies.get(position).getOriginalTitle());

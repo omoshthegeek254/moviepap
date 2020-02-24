@@ -22,18 +22,36 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
     EditText mPassword,mUserName;
     Button mLoginBtn;
     ProgressBar progressBarLogin;
-    FirebaseAuth fbAuth;
+     FirebaseAuth fbAuth;
+     FirebaseUser fbUser;
     TextView forgotPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        fbAuth= FirebaseAuth.getInstance();
+        fbUser = fbAuth.getCurrentUser();
+
+        if(fbUser!=null){
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            finish();
+        }
+//
+//        else {
+//            startActivity(new Intent(getApplicationContext(),Login.class));
+//            finish();
+//
+//        }
+
+
+
 
         mUserName = findViewById(R.id.mUserName);
         mPassword= findViewById(R.id.mPassword);
