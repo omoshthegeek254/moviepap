@@ -28,9 +28,9 @@ public class Login extends AppCompatActivity {
     EditText mPassword,mUserName;
     Button mLoginBtn;
     ProgressBar progressBarLogin;
-     FirebaseAuth fbAuth;
+   private   FirebaseAuth fbAuth;
      FirebaseUser fbUser;
-    TextView forgotPass;
+    TextView forgotPass,regUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,27 +38,14 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         fbAuth= FirebaseAuth.getInstance();
         fbUser = fbAuth.getCurrentUser();
-
-        if(fbUser!=null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-            finish();
-        }
-//
-//        else {
-//            startActivity(new Intent(getApplicationContext(),Login.class));
-//            finish();
-//
-//        }
-
-
-
-
         mUserName = findViewById(R.id.mUserName);
         mPassword= findViewById(R.id.mPassword);
         mLoginBtn =findViewById(R.id.mLoginBtn);
         progressBarLogin=findViewById(R.id.progressBarLogin);
-        fbAuth =FirebaseAuth.getInstance();
+        regUser= findViewById(R.id.regUser1);
         forgotPass =findViewById(R.id.forgotPass);
+
+
 
 //reset password
  forgotPass.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +91,8 @@ public class Login extends AppCompatActivity {
      }
  });
 
+
+
         //login logic
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +137,11 @@ public class Login extends AppCompatActivity {
         );
 
     }
-    public void regUser(View view){
-        startActivity(new Intent(getApplicationContext(),Register.class));
-    }
+
+
+
+
+//    public void regUser(View view){
+//        startActivity(new Intent(getApplicationContext(),Register.class));
+//    }
 }

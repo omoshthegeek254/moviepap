@@ -56,11 +56,7 @@ public class Main2Activity extends AppCompatActivity {
                     //what to do if successful
                     trendingMoviesList = response.body().getResults();
 
-//                    mAdapter = new adapter2(trendingMoviesList,Main2Activity.this);
-//                    mRecyclerView.setAdapter(mAdapter);
-////                    RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(Main2Activity.this);
-//                    mRecyclerView.setLayoutManager(layoutManager);
-//                    mRecyclerView.setHasFixedSize(true);
+
                     int numberOfColumns =3;
 
 

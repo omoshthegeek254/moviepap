@@ -28,7 +28,15 @@
 
         </activity>
         <activity android:name=".ui.CreateProfile" />
-        <activity android:name=".ui.Login" />
+        <activity android:name=".ui.Login" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
         <activity android:name=".ui.Register" />
         <activity
             android:name=".ui.MoviesActivity"
@@ -38,11 +46,7 @@
                 android:value=".ui.MainActivity" />
         </activity>
         <activity android:name=".ui.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
