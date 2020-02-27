@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Toast;
 
 import com.example.movie101.R;
@@ -42,10 +44,13 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         ButterKnife.bind(this);
 
+        String sample ="vikings";
+
 
         MoviesAPI client = MoviesClient.getClient();
 
-        Call<TrendingMoviesResponse> call = client.getPopularMovies(Constants.MOVIE_API_KEY);
+       Call<TrendingMoviesResponse> call = client.getPopularMovies(Constants.MOVIE_API_KEY);
+       // Call<TrendingMoviesResponse> call = client.searchSeries(sample,Constants.MOVIE_API_KEY);
         Log.v("MY URL",String.valueOf(call.request().url()));
 
         call.enqueue(new Callback<TrendingMoviesResponse>() {
@@ -88,5 +93,15 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
     }
+
+//    //inflate menu search  item
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_search, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+
+
 
 }

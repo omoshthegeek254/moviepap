@@ -11,30 +11,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MovieDisplay">
+        <activity android:name=".ui.SearchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+        <activity
+            android:name=".ui.MovieDisplay"
             android:parentActivityName=".ui.Main2Activity">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.Main2Activity" />
         </activity>
-        <activity android:name=".ui.Main2Activity">
+        <activity
+            android:name=".ui.Main2Activity"
             android:parentActivityName=".ui.MainActivity">
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
 
+<!--            &lt;!&ndash; The meta-data tag is required if you support API level 15 and lower &ndash;&gt;-->
+<!--            <meta-data-->
+<!--                android:name="android.support.PARENT_ACTIVITY"-->
+<!--                android:value=".ui.MainActivity" />-->
 
-        </activity>
-        <activity android:name=".ui.CreateProfile" />
-        <activity android:name=".ui.Login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+        </activity>
+        <activity android:name=".ui.CreateProfile" />
+        <activity android:name=".ui.Login">
 
         </activity>
         <activity android:name=".ui.Register" />
@@ -45,9 +54,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-        <activity android:name=".ui.MainActivity">
-
-        </activity>
+        <activity android:name=".ui.MainActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

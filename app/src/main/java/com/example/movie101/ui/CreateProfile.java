@@ -3,6 +3,7 @@ package com.example.movie101.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import com.example.movie101.R;
 import com.example.movie101.data.users;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -20,8 +23,9 @@ public class CreateProfile extends AppCompatActivity {
 
     Button saveBtn;
     TextView userName,genre,email;
-
+    FirebaseAuth.AuthStateListener fbAuthList;
     FirebaseDatabase fbDb = FirebaseDatabase.getInstance();
+    FirebaseAuth fbAuth = FirebaseAuth.getInstance();
     DatabaseReference dbRef = fbDb.getReference("users");
 
     @Override
@@ -58,5 +62,43 @@ public class CreateProfile extends AppCompatActivity {
                 });
             }
         });
+
+        //auth listner
+        makeAuthListner();
     }
+
+    private void  makeAuthListner(){
+        fbAuthList = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                final FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Intent intent = new Intent(CreateProfile.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+
+            }
+        };
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        fbAuth.addAuthStateListener(fbAuthList);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (fbAuthList != null) {
+            fbAuth.removeAuthStateListener(fbAuthList);
+        }
+    }
+
+
+    //creating user profile
+
 }

@@ -10,7 +10,18 @@ import retrofit2.http.Query;
 public interface MoviesAPI {
     @GET("trending/all/day")
     Call<TrendingMoviesResponse> getPopularMovies(@Query("api_key") String myAPIKey);
+
+
+    @GET("search/tv")
+    Call<TrendingMoviesResponse> searchSeries(
+
+            @Query("series") String series,
+           @Query ("api_key") String myAPIKey
+    );
+
+
 }
+
 //    @GET("trending/all/day")
 //    Call<TrendingMoviesResponse> getMovies(
 //
